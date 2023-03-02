@@ -1,0 +1,13 @@
+.cardMain{
+    border: 1px solid black;
+    border-radius: 9999999999;
+    padding: 10px;
+    margin: 15px;
+    
+}
+
+.img{
+    height: 130px;
+    width: 100px;
+    border: 1px solid black;
+}
