@@ -1,5 +1,13 @@
 import axios from "axios";
-import {GET_POKEMONS, GET_TYPES, POST_POKEMONS, FILTER_TYPES, SET_STATE_PAGES, FILTER_CREATED, GET_NAME_POKEMONS, GET_POKEMON_DETAIL } from "./actionTypes";
+import {GET_POKEMONS,
+    GET_TYPES,
+    POST_POKEMONS,
+    FILTER_TYPES,
+    SET_STATE_PAGES,
+    FILTER_CREATED,
+    GET_NAME_POKEMONS,
+    GET_POKEMON_DETAIL,
+    SORT_POKEMONS_ATTACK } from "./actionTypes";
 
 
 
@@ -25,10 +33,18 @@ export function getTypes() {
 
 export function postPokemons(payload) {
     return async function(dispatch) {
+        try {
         const res = await axios.post('http://localhost:3001/pokemons', payload)
+        const data = res.data;
+        alert('new Pokemon was born!!')
         return {
             type: POST_POKEMONS,
-            res
+            payload: data
+        }}
+        catch (error) {
+            const result = error.response.data.error
+            console.log(result);
+            alert(result);
         }
     };
 };
@@ -77,4 +93,11 @@ export function getDetailPokemon(idPokemon){
             console.log(error);   
         }
     }
+}
+
+export function sort(order) { //ASCENDENTE o DESCENDENTE
+    return {
+        type: SORT_POKEMONS_ATTACK,
+        payload: order, // ASCENDENTE o DESCENDENTE
+    };
 }

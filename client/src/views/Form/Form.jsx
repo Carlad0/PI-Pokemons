@@ -34,8 +34,8 @@ const Form = ()=>{
         const property = event.target.name;
         const value = event.target.value;
 
-        setForm({...form, [property]: value})
         setErrors(validate({...form, [property]: value}))
+        setForm({...form, [property]: value})
     }
     
     useEffect(() => {
@@ -45,7 +45,8 @@ const Form = ()=>{
     const submitHandler = (event) => {
         event.preventDefault()
         dispatch(postPokemons(form))
-        alert('new Pokemon was born!!')
+        
+        // alert('new Pokemon was born!!')
         setForm({
             name:"",
             image:"",
@@ -60,9 +61,10 @@ const Form = ()=>{
         setForm({
             ...form,
             types: [...form.types, event.target.value]
-        // types: [...new Set([...form.types, event.target.value])]
         })
     }
+
+    console.log(form);
     
     return(
         <>
@@ -71,7 +73,7 @@ const Form = ()=>{
             <div>
                 <label>Name: </label>
                 <input type="text" value={form.name} onChange={changeHandler} name="name" />
-        {errors.name && <span>{errors.name}</span>}
+                {errors.name && <span>{errors.name}</span>}
             </div>
             <div>
                 <label>Image: </label>
@@ -79,22 +81,22 @@ const Form = ()=>{
                 value={form.image} 
                 onChange={changeHandler} 
                 name="image" />
-        {errors.image && <span>{errors.image}</span>}
+                {errors.image && <span>{errors.image}</span>}
             </div>
             <div>
                 <label>Life: </label>
                 <input type="number" value={form.life} onChange={changeHandler} name="life" />
-    {errors.life && <span>{errors.life}</span>}
+                {errors.life && <span>{errors.life}</span>}
             </div>
             <div>
                 <label>Attack: </label>
                 <input type="number" value={form.attack} onChange={changeHandler} name="attack" />
-    {errors.attack && <span>{errors.attack}</span>}
+                {errors.attack && <span>{errors.attack}</span>}
             </div>
             <div>
                 <label>Defense: </label>
                 <input type="number" value={form.defense} onChange={changeHandler} name="defense" />
-        {errors.defense && <span>{errors.defense}</span>}
+                {errors.defense && <span>{errors.defense}</span>}
             </div>
             <div>
                 <label>Types</label>
@@ -103,9 +105,10 @@ const Form = ()=>{
                 name="types" 
                 value={form.types}
                 onChange={typesHandler}
+                multiple
                 >
-                    {types.map(tipo => (
-                        <option value={tipo}>{tipo}</option>
+                    {types.map((tipo) => (
+                        <option value={tipo} key={tipo}>{tipo}</option>
                     ))}
                     
                 </select>

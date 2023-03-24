@@ -12,7 +12,7 @@ const Card = (props) => {
                 <img className= {style.img} src={props.image} alt={props.name} />
                 <div className={style.cardMain}>Types: 
                 <hr />
-                    {props.types.map(t => (<div>{t}</div>))}
+                    {props.types.map((t, index) => (<div key={index}>{t}</div>))}
                 </div>
             </div>
             </Link>

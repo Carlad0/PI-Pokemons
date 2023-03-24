@@ -22,7 +22,7 @@ const Detail = () => {
             <h1>Vista de Detail</h1>
             {
                 (pokemonDetail.length) ? pokemonDetail.map(el => 
-                <div>
+                <div key={el.id}>
                     <img src={el.image} alt={el.name} />
                     <h1>My name is: {el.name}</h1>
                     <h1>My ID is: {el.id}</h1>
@@ -30,7 +30,7 @@ const Detail = () => {
                     <h1>I will attack with: {el.attack}</h1>
                     <h1>And will defend with: {el.defense}</h1>
                     <div>My types are: 
-                        {el.types.map(type => <div>{type}</div>)}
+                        {el.types.map(type => <div key={type}>{type}</div>)}
                     </div>
                 </div>)
                 : <p>Pokemon not found...</p>

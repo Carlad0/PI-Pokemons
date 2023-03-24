@@ -4,9 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemons, getTypes, filterByTypes, filterCreated } from "../../redux/actions";
 import SearchBar from '../../Components/SearchBar/SearchBar';
-
-
-
+import Order from "../../Components/Order/Order";
 
 const Home = () => {
 
@@ -21,43 +19,35 @@ const Home = () => {
 
     const handleFilterTypes = (event) => {
         dispatch(filterByTypes(event.target.value));
-
     }
 
     const handleCreated = (event) => {
         dispatch(filterCreated(event.target.value));
+    }
 
+    const handleLoad = (event) => {
+        dispatch(getPokemons())
     }
 
     return (
         <div> 
-            <div>
-                <select>
-                    <option value="asc">Ascending</option>
-                    <option value="dsc">Descending</option>
-                </select> 
-            </div>
-            <div>
-                <select name='filter' onChange={handleFilterTypes}>
-                    {types.map(tipo => (
-                            <option value={tipo}>{tipo}</option>
-                        ))} 
+            <Order />
+            <select name='filter' onChange={handleFilterTypes}>
+                <option value="all">All Types</option>
+                {types.map((tipo, index) => (
+                    <option value={tipo} key={index}>{tipo}</option>
+                    ))} 
             </select> 
-            <div>
-                <select onChange={handleCreated}>
-                    <option value="all">All</option>
-                    <option value="created">My Pokemons</option>
-                    <option value="api">Api Pokemons</option>
-                </select>
-                {/* <button onClick={handleCreated} value="created">Propios</button> */}
-            </div>
-            <div>
-                <SearchBar></SearchBar>
-            </div>
-            <div> 
-                <CardContainer></CardContainer>
-            </div>
-            </div>
+
+            <select onChange={handleCreated}>
+                <option value="all">All Pokemons</option>
+                <option value="created">My Pokemons</option>
+                <option value="api">Api Pokemons</option>
+            </select>
+
+            <SearchBar />
+            <button onClick={handleLoad}>Load All</button>
+            <CardContainer />
         </div>
     )
 }

@@ -33,7 +33,7 @@ const CardContainer = () => {
 
 	const renderPageNumbers = pages.map((number) => {
 		return (
-			<li className={style.pageNumbers_li}>
+			<li className={style.pageNumbers_li} key={number}>
 				<a key={number} id={number} onClick={handlerPageClick}>
 					{number}
 				</a>
@@ -41,17 +41,15 @@ const CardContainer = () => {
 		)
 	}) 
 
-
 	return(
 		<div>
-			<div>
-			
+			<div>		
 				<ul className={style.pageNumbers}>{renderPageNumbers}</ul>
-
 			</div>
 			<div className={style.container}>
 				{currentPokemon.map(pokemon => {
 					return <Card
+						key={pokemon.id}
 						image= {pokemon.image}
 						name= {pokemon.name}
 						types={pokemon.types}

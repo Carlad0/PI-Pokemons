@@ -1,8 +1,13 @@
-.mainContainer{
+.NavBarContainer{
     display: flex;
-    flex-direction: row;
     justify-content: space-around;
     border-radius: 15px;
     border: 1px solid black;
+    width: 70%;
+    padding: 2rem;
+}
 
+.btn{
+    text-decoration: none;
+    font-size: xx-large;
 }

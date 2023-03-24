@@ -9,7 +9,9 @@ const getApiTypes = async () => {
         where: { name: type.name },
       });
     });
-    const allTypes = await Type.findAll();
+    const allTypesRaw = await Type.findAll();
+    const allTypes = allTypesRaw.map(t => t.name)
+    console.log(allTypes);
     return allTypes;
 };
 

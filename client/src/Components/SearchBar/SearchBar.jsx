@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getNamePokemon } from "../../redux/actions";
 
@@ -6,6 +6,10 @@ const SearchBar = () => {
 
     const dispatch = useDispatch();
     const [name, setName] = useState("");
+
+    useEffect (() => {
+        return () => setName('');
+    },[])
 
     const handlerInputChange = (event) => {
         event.preventDefault();
@@ -17,6 +21,7 @@ const SearchBar = () => {
         event.preventDefault();
         dispatch(getNamePokemon(name))
     }
+
 
     return(
         <div>
